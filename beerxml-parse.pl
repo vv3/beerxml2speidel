@@ -91,6 +91,7 @@ foreach my $hop (sort {$b->{TIME} <=> $a->{TIME}} @hop_steps) {
 
 my $hop_steps_string = join '', map {sprintf "X%d", $_} @hop_additions;
 
+$recipe_name =~ s/ /_/g;
 my $recipe_string = sprintf "%dX%d%sX%dX%d%s.%s",
     $recipe_no,
     $mashin_temp,
@@ -101,7 +102,6 @@ my $recipe_string = sprintf "%dX%d%sX%dX%d%s.%s",
     $recipe_name;
     #uri_escape($recipe_name);
 printf "Recipe:\n$recipe_string\n" if $debug;
-
 
 if ($speidel) {
     my $ua = LWP::UserAgent->new;
