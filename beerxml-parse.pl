@@ -54,7 +54,11 @@ my $i = 0;
 die "No mash steps found" unless (scalar @recipe_mash_steps > 0);
 
 foreach my $mash (@recipe_mash_steps) {
-    next if (defined $mash->{TYPE} and $mash->{TYPE} ne 'Infusion');
+    next if (defined $mash->{TYPE}
+             and
+             (
+              $mash->{TYPE} ne 'Infusion' and
+              $mash->{TYPE} ne 'Sparge'));
     $mash_steps [$i++] = [$mash->{STEP_TEMP}, $mash->{STEP_TIME}];
 }
 my $mash_steps_string = join '', map {sprintf "X%dX%d", $_->[0], $_->[1]} @mash_steps;
